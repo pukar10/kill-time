@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
 
 function App() {
   const loggedIn = localStorage.getItem("loggedIn") === "true";
@@ -9,17 +9,22 @@ function App() {
     <Routes>
       <Route
         path="/login"
-        element={loggedIn ? <Navigate to="/dashboard" /> : <Login />}
+        element={loggedIn ? <Navigate to="/home" /> : <Login />}
+      />
+
+      <Route
+        path="/home"
+        element={loggedIn ? <Home /> : <Navigate to="/login" />}
       />
 
       <Route
         path="/dashboard"
-        element={loggedIn ? <Dashboard /> : <Navigate to="/login" />}
+        element={<Navigate to={loggedIn ? "/home" : "/login"} />}
       />
 
       <Route
         path="*"
-        element={<Navigate to={loggedIn ? "/dashboard" : "/login"} />}
+        element={<Navigate to={loggedIn ? "/home" : "/login"} />}
       />
     </Routes>
   );

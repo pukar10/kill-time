@@ -13,7 +13,7 @@ export default function Login() {
 
     if (username === "admin" && password === "admin") {
       localStorage.setItem("loggedIn", "true");
-      navigate("/dashboard");
+      navigate("/home");
     } else {
       setError("Invalid username or password");
     }
