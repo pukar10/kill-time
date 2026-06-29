@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository contains a React + Vite frontend application in `web/`. Run frontend commands from `web/` or use the root npm wrapper scripts.
+This repository contains a React + Vite frontend application in `web/` and a reserved `api/` directory for a FastAPI backend. Run frontend commands from `web/` or use the root npm wrapper scripts.
 
 ## Commands From Repo Root
 
@@ -30,10 +30,14 @@ npm run preview:web
 - `web/package.json` - frontend dependencies and scripts.
 - `web/vite.config.js` - frontend Vite config.
 - `web/tsconfig.json` - frontend TypeScript config.
+- `api/` - FastAPI backend workspace.
+- `api/AGENTS.md` - backend-specific agent instructions.
 
 ## Agent Workflow
 
 - For frontend work, inspect `web/AGENTS.md` before editing.
+- For backend work, inspect `api/AGENTS.md` before editing.
 - Keep app-specific code and frontend config inside `web/`.
+- Keep backend-specific code and config inside `api/`.
 - Do not move files back to the repo root unless explicitly requested.
 - Do not overwrite unrelated user changes.
