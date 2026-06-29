@@ -67,3 +67,9 @@ Follow Conventional Commits:
 - `test`: — Adding or updating tests
 - `refactor`: — Code change with no behavior change
 - `ci`: — CI/CD pipeline changes
+
+## React Conventions
+
+- React 19 — use functional components and hooks exclusively. No class components.
+- TypeScript strict mode is enabled. All props must be typed. Avoid `any`.
+- Path aliases: Use @/* to import from src/ (e.g., import { Thing } from '@/components/Thing').
