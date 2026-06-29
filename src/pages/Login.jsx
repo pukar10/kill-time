@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -12,8 +12,8 @@ export default function Login() {
     e.preventDefault();
 
     if (username === "admin" && password === "admin") {
-      localStorage.setItem("loggedIn", "true");
-      navigate("/home");
+      onLogin();
+      navigate("/home", { replace: true });
     } else {
       setError("Invalid username or password");
     }

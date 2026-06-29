@@ -14,12 +14,12 @@ const quickActions = [
   "Check recent activity",
 ];
 
-export default function Home() {
+export default function Home({ onLogout }) {
   const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem("loggedIn");
-    navigate("/login");
+    onLogout();
+    navigate("/login", { replace: true });
   };
 
   return (
