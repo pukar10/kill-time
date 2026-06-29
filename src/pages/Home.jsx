@@ -1,4 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const quickActions = [
   "Review today's priorities",
@@ -25,40 +33,57 @@ export default function Home() {
           </p>
         </div>
 
-        <button className="secondary-button" type="button" onClick={logout}>
+        <Button variant="outline" type="button" onClick={logout}>
           Logout
-        </button>
+        </Button>
       </header>
 
       <section className="home-summary" aria-label="Daily summary">
-        <div>
-          <span className="summary-value">3</span>
-          <span className="summary-label">Open tasks</span>
-        </div>
-        <div>
-          <span className="summary-value">1</span>
-          <span className="summary-label">Focus session</span>
-        </div>
-        <div>
-          <span className="summary-value">24m</span>
-          <span className="summary-label">Time saved</span>
-        </div>
+        <Card>
+          <CardContent>
+            <span className="summary-value">3</span>
+            <span className="summary-label">Open tasks</span>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <span className="summary-value">1</span>
+            <span className="summary-label">Focus session</span>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <span className="summary-value">24m</span>
+            <span className="summary-label">Time saved</span>
+          </CardContent>
+        </Card>
       </section>
 
-      <section className="home-panel">
-        <div>
+      <Card className="home-panel">
+        <CardHeader>
           <p className="eyebrow">Next up</p>
-          <h2>Choose what to work on</h2>
-        </div>
+          <CardTitle>Choose what to work on</CardTitle>
+          <CardDescription>
+            Start from a common workflow or use this space for your next app
+            feature.
+          </CardDescription>
+        </CardHeader>
 
-        <div className="quick-actions">
-          {quickActions.map((action) => (
-            <button className="action-button" type="button" key={action}>
-              {action}
-            </button>
-          ))}
-        </div>
-      </section>
+        <CardContent>
+          <div className="quick-actions">
+            {quickActions.map((action) => (
+              <Button
+                className="action-button"
+                type="button"
+                variant="outline"
+                key={action}
+              >
+                {action}
+              </Button>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </main>
   );
 }

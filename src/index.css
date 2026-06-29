@@ -1,9 +1,68 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  }
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: #f5f5f5;
-  color: #111;
+  background: var(--background);
+  color: var(--foreground);
 }
 
 .Login-container {
@@ -102,24 +161,12 @@ button[type="submit"]:hover { background: #333; }
   margin-top: 0.6rem;
 }
 
-.secondary-button,
 .action-button {
-  border: 1px solid #d4d4d4;
-  border-radius: 8px;
-  background: #fff;
-  color: #111;
-  cursor: pointer;
   font: inherit;
   font-weight: 600;
   transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
 }
 
-.secondary-button {
-  padding: 0.65rem 1rem;
-  white-space: nowrap;
-}
-
-.secondary-button:hover,
 .action-button:hover {
   border-color: #999;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -133,16 +180,18 @@ button[type="submit"]:hover { background: #333; }
   margin-bottom: 24px;
 }
 
-.home-summary > div,
+.home-summary [data-slot="card-content"] {
+  padding-top: 28px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 28px;
+}
+
 .home-panel {
   background: #fff;
   border: 1px solid #e5e5e5;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-.home-summary > div {
-  padding: 20px;
 }
 
 .summary-value,
@@ -163,11 +212,6 @@ button[type="submit"]:hover { background: #333; }
 
 .home-panel {
   padding: 24px;
-}
-
-.home-panel h2 {
-  font-size: 1.35rem;
-  margin-bottom: 18px;
 }
 
 .quick-actions {
@@ -192,7 +236,7 @@ button[type="submit"]:hover { background: #333; }
     display: block;
   }
 
-  .secondary-button {
+  .home-header > button {
     margin-top: 20px;
   }
 
