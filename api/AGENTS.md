@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This directory is reserved for the FastAPI backend. Keep backend application code, Python dependency files, API tests, and backend-specific configuration inside `api/`.
+This directory `api/` contains the FastAPI backend. Keep backend application code, Python dependency files, API tests, and backend-specific configuration here.
 
 ## Expected Tech Stack
 
@@ -15,30 +15,26 @@ This directory is reserved for the FastAPI backend. Keep backend application cod
 
 ## Commands
 
-No backend commands are defined yet. When the API is scaffolded, document the exact commands here.
-
-Expected future commands:
+Run these from `api/`:
 
 ```bash
-uvicorn main:app --reload
-pytest
-ruff check .
-ruff format .
+uv sync
+uv run uvicorn src.main:app --reload
+uv run pytest
+uv run ruff check .
+uv run ruff format .
 ```
 
-If a package manager is chosen, prefer documenting one clear workflow, such as `uv`, `pip`, or Poetry. Do not mix package managers without a reason.
+Use `uv` as the package manager. Do not mix package managers.
 
 ## Suggested Structure
 
 Use the repo's actual structure once files exist. A reasonable FastAPI layout is:
 
-- `main.py` - FastAPI app entry point.
-- `app/` - application package.
-- `app/api/` - route modules.
-- `app/core/` - settings, configuration, and shared setup.
-- `app/models/` - database or domain models.
-- `app/schemas/` - Pydantic request/response schemas.
-- `app/services/` - business logic.
+- `src/main.py` - FastAPI app entry point.
+- `src/core/` - settings, configuration, and shared setup.
+- `src/health/` - health check routes.
+- `src/middleware/` - middleware configuration.
 - `tests/` - API and unit tests.
 
 ## Coding Standards
@@ -63,8 +59,8 @@ Use the repo's actual structure once files exist. A reasonable FastAPI layout is
 After backend code changes, run the relevant checks once commands exist:
 
 ```bash
-pytest
-ruff check .
+uv run pytest
+uv run ruff check .
 ```
 
 If commands are not yet configured or cannot be run, report what remains unverified.

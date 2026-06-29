@@ -13,6 +13,10 @@
     "dev:web": "npm --prefix web run dev",
     "lint:web": "npm --prefix web run lint",
     "build:web": "npm --prefix web run build",
-    "preview:web": "npm --prefix web run preview"
+    "preview:web": "npm --prefix web run preview",
+    "dev:api": "cd api && uv run uvicorn src.main:app --reload",
+    "lint:api": "cd api && uv run ruff check .",
+    "test:api": "cd api && uv run pytest",
+    "format:api": "cd api && uv run ruff format ."
   }
 }

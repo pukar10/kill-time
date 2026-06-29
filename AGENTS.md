@@ -20,6 +20,9 @@ npm run dev:web
 npm run lint:web
 npm run build:web
 npm run preview:web
+npm run dev:api
+npm run lint:api
+npm run test:api
 ```
 
 ## Workspace Layout
@@ -32,6 +35,7 @@ npm run preview:web
 - `web/tsconfig.json` - frontend TypeScript config.
 - `api/` - FastAPI backend workspace.
 - `api/AGENTS.md` - backend-specific agent instructions.
+- `api/pyproject.toml` - backend dependencies and tool configuration.
 
 ## Agent Workflow
 
