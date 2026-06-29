@@ -55,3 +55,15 @@ npm run build
 ```
 
 If a command cannot be run, report the reason and what remains unverified.
+
+### Commit Messages
+
+Follow Conventional Commits:
+
+- `feat`: — New feature
+- `fix`: — Bug fix
+- `chore`: — Maintenance, deps, config
+- `docs`: — Documentation only
+- `test`: — Adding or updating tests
+- `refactor`: — Code change with no behavior change
+- `ci`: — CI/CD pipeline changes
