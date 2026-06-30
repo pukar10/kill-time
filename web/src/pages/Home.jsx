@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 const quickActions = [
   "Review today's priorities",
@@ -14,6 +14,14 @@ export default function Home({ onLogout }) {
   const [healthStatus, setHealthStatus] = useState("Not checked");
   const [healthError, setHealthError] = useState("");
   const [checkingHealth, setCheckingHealth] = useState(false);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") ?? "light",
+  );
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const logout = () => {
     onLogout();
@@ -41,6 +49,10 @@ export default function Home({ onLogout }) {
     }
   };
 
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
+  };
+
   return (
     <main className="home-page">
       <header className="home-header">
@@ -52,13 +64,24 @@ export default function Home({ onLogout }) {
           </p>
         </div>
 
-        <button
-          className="logout-button"
-          type="button"
-          onClick={logout}
-        >
-          Logout
-        </button>
+        <div className="home-actions">
+          <button
+            className="theme-toggle"
+            type="button"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            <span className="theme-toggle-shape" />
+          </button>
+
+          <button
+            className="logout-button"
+            type="button"
+            onClick={logout}
+          >
+            Logout
+          </button>
+        </div>
       </header>
 
       <section className="home-summary" aria-label="Daily summary">
