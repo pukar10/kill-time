@@ -220,6 +220,69 @@ button[type="submit"]:hover { background: #333; }
   text-align: left;
 }
 
+.health-panel {
+  margin-top: 24px;
+}
+
+.health-check {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.health-button {
+  background: #111;
+  border: 1px solid #111;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  min-height: 48px;
+  padding: 12px 24px;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.health-button:hover:not(:disabled) {
+  background: #333;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.health-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.health-result {
+  background: #fafafa;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 220px;
+  padding: 14px 16px;
+}
+
+.health-label {
+  color: var(--muted);
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+.health-result strong {
+  display: block;
+}
+
+.health-result p {
+  color: #b91c1c;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  margin-top: 0.4rem;
+}
+
 @media (max-width: 720px) {
   .home-page {
     width: min(100% - 24px, 960px);
@@ -238,5 +301,14 @@ button[type="submit"]:hover { background: #333; }
   .home-summary,
   .quick-actions {
     grid-template-columns: 1fr;
+  }
+
+  .health-check {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .health-result {
+    min-width: 0;
   }
 }

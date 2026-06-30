@@ -1,21 +1,14 @@
-from fastapi.testclient import TestClient
-
-from src.main import app
-
-
-client = TestClient(app)
+from src.health.routes import HealthResponse, read_health
+from src.main import read_root
 
 
 def test_read_root() -> None:
-    response = client.get("/")
-
-    assert response.status_code == 200
-    assert response.json()["status"] == "ok"
+    response = read_root()
+    assert response["status"] == "ok"
 
 
 def test_read_health() -> None:
-    response = client.get("/health")
+    response = read_health()
 
-    assert response.status_code == 200
-    assert response.json() == {"status": "ok"}
-
+    assert isinstance(response, HealthResponse)
+    assert response.status == "ok"

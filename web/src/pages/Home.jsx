@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const quickActions = [
   "Review today's priorities",
@@ -6,12 +7,38 @@ const quickActions = [
   "Check recent activity",
 ];
 
+const apiUrl = import.meta.env.VITE_API_URL ?? "http://127.0.0.1:8000";
+
 export default function Home({ onLogout }) {
   const navigate = useNavigate();
+  const [healthStatus, setHealthStatus] = useState("Not checked");
+  const [healthError, setHealthError] = useState("");
+  const [checkingHealth, setCheckingHealth] = useState(false);
 
   const logout = () => {
     onLogout();
     navigate("/login", { replace: true });
+  };
+
+  const checkHealth = async () => {
+    setCheckingHealth(true);
+    setHealthError("");
+
+    try {
+      const response = await fetch(`${apiUrl}/health`);
+
+      if (!response.ok) {
+        throw new Error(`Health check failed with ${response.status}`);
+      }
+
+      const data = await response.json();
+      setHealthStatus(data.status ?? "unknown");
+    } catch (error) {
+      setHealthStatus("Unavailable");
+      setHealthError(error instanceof Error ? error.message : "Health check failed");
+    } finally {
+      setCheckingHealth(false);
+    }
   };
 
   return (
@@ -71,6 +98,33 @@ export default function Home({ onLogout }) {
               {action}
             </button>
           ))}
+        </div>
+      </section>
+
+      <section className="home-panel health-panel" aria-label="Backend health">
+        <div className="home-panel-header">
+          <p className="eyebrow">API status</p>
+          <h2>Backend health</h2>
+          <p className="home-panel-description">
+            Check whether the FastAPI backend is responding.
+          </p>
+        </div>
+
+        <div className="health-check">
+          <button
+            className="health-button"
+            type="button"
+            onClick={checkHealth}
+            disabled={checkingHealth}
+          >
+            {checkingHealth ? "Checking..." : "Check health"}
+          </button>
+
+          <div className="health-result" aria-live="polite">
+            <span className="health-label">Status</span>
+            <strong>{healthStatus}</strong>
+            {healthError && <p>{healthError}</p>}
+          </div>
         </div>
       </section>
     </main>
